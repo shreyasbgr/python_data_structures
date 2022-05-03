@@ -8,10 +8,6 @@ class LinkedList:
         self.head = None
 
     def insert_at_beginning(self,data):
-        if self.head is None:
-            self.head = Node(data,None)
-            return
-        
         node = Node(data,self.head)
         self.head = node
     
@@ -43,8 +39,12 @@ class LinkedList:
             itr=itr.next
     
     def remove_at(self,index):
-        if index <0 or index > self.get_length():
+        if index <0 or index >= self.get_length():
             raise Exception("Index out of bounds")
+        
+        if index ==0:
+            self.head=self.head.next
+            return
         itr = self.head
         count=0
         while itr.next:
@@ -68,11 +68,31 @@ class LinkedList:
         return count
 
     def print_list(self):
+        if self.head is None:
+            print("Linked list is empty")
+            return
         itr = self.head
         while itr:
             print(str(itr.data)+"-->",end='')
             itr = itr.next
         print("None")
+
+    def insert_after_value(self,data_after,data_to_insert):
+        itr = self.head
+        while itr:
+            if itr.data == data_after:
+                itr.next = Node(data_to_insert,itr.next)
+            itr = itr.next
+    
+    def remove_by_value(self,data):
+        itr = self.head
+        count = 0
+        while itr:
+            if itr.data == data:
+                self.remove_at(count)
+                return
+            count+=1
+            itr = itr.next
 
 l1 = LinkedList()
 l1.insert_at_beginning(67)

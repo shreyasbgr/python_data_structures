@@ -1,0 +1,55 @@
+Instructions: 
+DFS PreOrder
+Write the dfs_pre_order method
+
+*** Solution Explanation ***
+ def dfs_pre_order(self):
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+        traverse(self.root)
+        return results
+
+
+The dfs_pre_order method in the BinarySearchTree class performs a Depth-First Search traversal of the binary search tree in pre-order. The pre-order traversal visits the current node first, then the left child, and then the right child.
+
+The method starts by creating an empty list called results that will be used to store the values of the visited nodes. Then, the method defines a nested function called traverse that takes a current_node argument. The traverse function appends the value of the current_node to the results list, and then recursively calls itself to traverse the left child and the right child (if they exist) in pre-order.
+
+The method then calls the traverse function with the root node of the tree to start the pre-order traversal. The traverse function recursively visits each node in the tree in pre-order, appending the value of each visited node to the results list. Finally, the dfs_pre_order method returns the results list, which contains the values of all nodes in the binary search tree in pre-order.
+
+The DFS algorithm uses recursion to visit each node in the tree. In this implementation, the traverse function takes a current_node argument and appends the value of the node to the results list. Then, the function recursively calls itself to traverse the left and right child of the current node. The recursive calls continue until there are no more nodes to visit, and the results list is returned with the values of all visited nodes.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def dfs_pre_order(self):
+    results = []  # create an empty list to store the values of visited nodes
+ 
+    def traverse(current_node):
+        # append the value of the current node to the results list
+        results.append(current_node.value)
+ 
+        # if the current node has a left child, recursively traverse it
+        if current_node.left is not None:
+            traverse(current_node.left)
+ 
+        # if the current node has a right child, recursively traverse it
+        if current_node.right is not None:
+            traverse(current_node.right)
+ 
+    # start the pre-order traversal from the root of the tree
+    traverse(self.root)
+ 
+    # return the list of visited node values
+    return results
+
+*** OUTPUT ***

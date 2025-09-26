@@ -1,0 +1,102 @@
+Instructions:
+LL: Partition List (⚡Interview Question)
+You are given a singly linked list implementation in Python that does not have a tail pointer (which will make this method simpler to implement).
+
+You are tasked with implementing a method partition_list(self, x) that will take an integer x and partition the linked list such that all nodes with values less than x come before nodes with values greater than or equal to x. You should preserve the original relative order of the nodes in each of the two partitions.
+
+You need to implement this method as a method of the LinkedList class. The method should take an integer x as input. If the linked list is empty, the method should return None.
+
+To implement this method, you should create two new linked lists. These two linked lists will be made up of the original nodes from the linked list that is being partitioned, one for nodes less than x and one for nodes greater than or equal to x.  None of the nodes from the linked list should be duplicated.
+
+The creation of a limited number of new nodes is allowed (e.g., dummy nodes to facilitate the partitioning process).
+
+You should then traverse the original linked list and append each node to the appropriate new linked list.
+
+Finally, you should connect the two new linked lists together.
+
+*** Solution Explanation ***
+def partition_list(self, x):
+        if not self.head:
+            return None
+        
+        dummy1 = Node(0)
+        dummy2 = Node(0)
+        prev1 = dummy1
+        prev2 = dummy2
+        current = self.head
+        
+        while current:
+            if current.value < x:
+                prev1.next = current
+                prev1 = current
+            else:
+                prev2.next = current
+                prev2 = current
+            current = current.next
+        
+        prev2.next = None
+        prev1.next = dummy2.next
+        
+        self.head = dummy1.next
+
+
+
+
+The partition_list method takes in a value x and partitions the linked list such that all nodes with values less than x come before nodes with values greater than or equal to x.
+
+The method creates two dummy nodes, dummy1 and dummy2, which will be used to hold the two partitions. The prev1 and prev2 variables are used to keep track of the last node of each partition, initially pointing to their respective dummy nodes. The current variable starts at the head of the original list.
+
+The method then iterates through the original list using a while loop. For each node in the list, the method checks if its value is less than x. If it is, the node is added to the first partition by setting prev1.next to the current node and updating prev1 to point to the current node.
+
+If the node's value is greater than or equal to x, it is added to the second partition in a similar way, by setting prev2.next to the current node and updating prev2 to point to the current node.
+
+Once all nodes have been processed, the method sets prev2.next to None to ensure that the second partition ends with a null pointer. It then sets prev1.next to dummy2.next, which connects the end of the first partition to the beginning of the second partition.
+
+Finally, the method sets the head of the linked list to dummy1.next, which is the first node of the first partition (excluding the dummy node).
+
+
+
+
+
+Code with inline comments:
+
+
+
+# This function partitions a linked list based on a given value x
+def partition_list(self, x):
+    
+    # If linked list is empty, return None
+    if not self.head:
+        return None
+    
+    # Create two dummy nodes to be used as placeholders
+    # One will hold values less than x and the other will hold values greater
+    # than or equal to x
+    dummy1 = Node(0)
+    dummy2 = Node(0)
+    prev1 = dummy1
+    prev2 = dummy2
+    
+    # Start with the head node of the linked list
+    current = self.head
+    
+    # Traverse through the linked list and move each node to either
+    # dummy1 or dummy2 depending on its value compared to x
+    while current:
+        if current.value < x:
+            prev1.next = current
+            prev1 = current
+        else:
+            prev2.next = current
+            prev2 = current
+        current = current.next
+    
+    # Terminate dummy2 list with None
+    prev2.next = None
+    
+    # Combine the two partitioned linked lists by pointing the last node
+    # in the dummy1 list to the first node in the dummy2 list
+    prev1.next = dummy2.next
+    
+    # Set the head of the linked list to the first node in dummy1
+    self.head = dummy1.next

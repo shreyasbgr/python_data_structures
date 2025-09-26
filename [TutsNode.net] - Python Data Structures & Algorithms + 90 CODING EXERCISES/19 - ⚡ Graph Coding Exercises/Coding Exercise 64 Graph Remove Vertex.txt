@@ -1,0 +1,139 @@
+Instructions: 
+Graph: Remove Vertex
+The remove_vertex method takes a vertex as input and removes it from the graph, along with all edges connected to it.
+
+The method returns True if the vertex was successfully removed and False if the vertex was not present in the graph.
+
+*** Solution Explanation ***
+def remove_vertex(self, vertex):
+        if vertex in self.adj_list:
+            for other_vertex in self.adj_list[vertex]:
+                self.adj_list[other_vertex].remove(vertex)
+            del self.adj_list[vertex]
+            return True
+        return False  
+
+
+The remove_vertex method removes a vertex from the graph along with all edges connected to it. The method takes a single parameter, vertex, which is the name of the vertex to be removed.
+
+The method first checks whether the vertex to be removed is actually in the graph by checking if it is a key in the adj_list dictionary.
+
+If the vertex is in the graph, it then loops over all vertices that are adjacent to the vertex to be removed using a for loop. For each adjacent vertex, it then removes the vertex to be removed from the list of adjacent vertices by calling the remove() method on the adj_list[other_vertex] list. This step ensures that all edges connected to the vertex being removed are also removed from the graph.
+
+After removing all the edges, the method removes the vertex itself from the adj_list dictionary using the del statement.
+
+Finally, it returns True to indicate that the vertex was successfully removed from the graph.
+
+If the vertex is not in the graph, the method returns False to indicate that no removal occurred.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def remove_vertex(self, vertex):
+    # Check if the vertex to be removed is in the adjacency list
+    if vertex in self.adj_list:
+        # Loop over all vertices adjacent to the vertex to be removed
+        for other_vertex in self.adj_list[vertex]:
+            # Remove the vertex to be removed from the list of 
+            # adjacent vertices of the other vertices
+            self.adj_list[other_vertex].remove(vertex)
+        # After removing all the edges, remove the vertex from the adjacency list
+        del self.adj_list[vertex]
+        # Return True to indicate that the vertex was 
+        # successfully removed from the graph
+        return True
+    # If the vertex to be removed is not in the graph, return False
+    return False
+
+
+*** OUTPUT ***
+class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def print_graph(self):
+        v_list = []
+        for vertex in self.adj_list:
+            v_list.append(vertex)
+        v_list.sort()
+        for v in v_list:
+            print(v, ':', self.adj_list[v])
+
+    def add_vertex(self, vertex):
+        if vertex not in self.adj_list.keys():
+            self.adj_list[vertex] = []
+            return True
+        return False
+
+    def add_edge(self, v1, v2):
+        if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
+            self.adj_list[v1].append(v2)
+            self.adj_list[v2].append(v1)
+            return True
+        return False
+
+    def remove_edge(self, v1, v2):
+        if v1 in self.adj_list.keys() and v2 in self.adj_list.keys(): 
+            try:
+                self.adj_list[v1].remove(v2)
+                self.adj_list[v2].remove(v1)
+            except ValueError:
+                pass
+            return True
+        return False
+
+    ## WRITE REMOVE_VERTEX METHOD HERE ##
+    #                                   #
+    #                                   #
+    #                                   #
+    #                                   #
+    ##################################### 
+
+
+
+
+my_graph = Graph()
+my_graph.add_vertex('A')
+my_graph.add_vertex('B')
+my_graph.add_vertex('C')
+my_graph.add_vertex('D')
+
+my_graph.add_edge('A','B')
+my_graph.add_edge('A','C')
+my_graph.add_edge('A','D')
+my_graph.add_edge('B','D')
+my_graph.add_edge('C','D')
+
+
+print('Graph before remove_vertex():')
+my_graph.print_graph()
+
+
+my_graph.remove_vertex('D')
+
+
+print('\nGraph after remove_vertex():')
+my_graph.print_graph()
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    Graph before remove_vertex():
+    A : ['B', 'C', 'D']
+    B : ['A', 'D']
+    C : ['A', 'D']
+    D : ['A', 'B', 'C']
+
+    Graph after remove_vertex():
+    A : ['B', 'C']
+    B : ['A']
+    C : ['A']
+
+"""

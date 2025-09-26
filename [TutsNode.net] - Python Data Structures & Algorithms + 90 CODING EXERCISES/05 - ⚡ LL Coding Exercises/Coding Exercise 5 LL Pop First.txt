@@ -1,0 +1,24 @@
+Instructions: Write the pop_first method	
+
+
+*** Solution Explanation ***
+def pop_first(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.tail = None
+        return temp
+
+Big O:
+
+O( 1 )
+
+Constant Time
+
+No matter how large the linked list is, the number of operations taken to execute pop_first remains constant
+
+Constant time is another name for O( 1 )

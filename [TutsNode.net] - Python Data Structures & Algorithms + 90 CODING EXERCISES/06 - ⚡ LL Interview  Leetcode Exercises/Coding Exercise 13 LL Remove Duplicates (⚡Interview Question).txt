@@ -1,0 +1,85 @@
+Instructions:
+LL: Remove Duplicates (⚡Interview Question)
+You are given a singly linked list that contains integer values, where some of these values may be duplicated.
+
+Your task is to implement a method called remove_duplicates() within the LinkedList class that removes all duplicate values from the list.
+
+Your method should not create a new list, but rather modify the existing list in-place, preserving the relative order of the nodes.
+
+You can implement the remove_duplicates() method in two different ways:
+
+
+
+Using a Set - This approach will have a time complexity of O(n), where n is the number of nodes in the linked list. You are allowed to use the provided Set data structure in your implementation.
+
+Without using a Set - This approach will have a time complexity of O(n^2), where n is the number of nodes in the linked list. You are not allowed to use any additional data structures for this implementation.
+
+
+
+Here is the method signature you need to implement:
+
+def remove_duplicates(self):
+
+
+Example:
+
+Input:
+
+LinkedList: 1 -> 2 -> 3 -> 1 -> 4 -> 2 -> 5
+
+Output:
+
+LinkedList: 1 -> 2 -> 3 -> 4 -> 5
+
+*** Solution Explanation ***
+For the optimal solution you will want to use a Set (you can read more about Sets here https://www.w3schools.com/python/python_sets.asp):
+
+I have also included an implementation that does not use a Set at the bottom of this explanation.
+
+Either solution will work but the one with Sets is O(n) while the other is O(n^2) time complexity.
+
+
+
+    def remove_duplicates(self):
+            values = set()
+            previous = None
+            current = self.head
+            while current:
+                if current.value in values:
+                    previous.next = current.next
+                    self.length -= 1
+                else:
+                    values.add(current.value)
+                    previous = current
+                current = current.next
+
+
+In this implementation, the linked list is iterated over using a while loop, with the current variable starting at the head of the linked list and the previous variable starting at None.
+
+If the current node's value is in the set of values, it's a duplicate, so the previous node's next attribute is set to the current node's next attribute. This effectively removes the duplicate node from the linked list. If the current node's value is not in the set, it's added to the set, and the previous variable is set to current.
+
+Finally, the current variable is set to the current node's next attribute, and the iteration continues until current is None.
+
+
+
+
+
+You can also do this without a Set but this will change the Big O from O(n) to O(n^2):
+
+A Set is a data structure that we will learn more about later in the course.
+
+Here is the solution without using a Set:
+
+
+
+    def remove_duplicates(self):
+        current = self.head
+        while current:
+            runner = current
+            while runner.next:
+                if runner.next.value == current.value:
+                    runner.next = runner.next.next
+                    self.length -= 1
+                else:
+                    runner = runner.next
+            current = current.next

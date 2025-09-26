@@ -1,0 +1,102 @@
+Instructions: 
+Merge
+Write the merge helper function
+
+*** Solution Explanation ***
+def merge(list1, list2):
+    combined = []
+    i = 0
+    j = 0
+    while i < len(list1) and j < len(list2):
+        if list1[i] < list2[j]:
+            combined.append(list1[i])
+            i += 1
+        else:
+            combined.append(list2[j])
+            j += 1
+              
+    while i < len(list1):
+        combined.append(list1[i])
+        i += 1
+ 
+    while j < len(list2):
+        combined.append(list2[j])
+        j += 1
+ 
+    return combined
+
+
+Merge takes in two sorted lists of numbers, merges them, and returns a single sorted list that contains all the elements of the two input lists. Here is how the code works:
+
+The function takes in two lists list1 and list2 as input.
+
+The function initializes an empty list combined to store the merged result.
+
+The function initializes two variables i and j to zero to keep track of the current index of each input list.
+
+The function enters a while loop that continues as long as both i and j are less than the lengths of list1 and list2, respectively.
+
+Inside the while loop, the function compares the current values of list1[i] and list2[j]. If list1[i] is less than list2[j], it is added to the combined list and i is incremented. Otherwise, list2[j] is added to the combined list and j is incremented.
+
+After the while loop ends, the function enters two more while loops to add any remaining elements from list1 or list2 to the combined list.
+
+Finally, the function returns the combined list.
+
+
+Overall, the function merges two sorted lists by iterating over the lists and comparing their elements. The time complexity of this algorithm is O(n), where n is the length of the merged list, since each element is compared exactly once.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def merge(list1, list2):
+    combined = []  # initialize an empty list to store the merged result
+    i = 0  # initialize the index of list1 to zero
+    j = 0  # initialize the index of list2 to zero
+    while i < len(list1) and j < len(list2):
+        # compare the current elements of list1 and list2, and append the smaller one to combined
+        if list1[i] < list2[j]:
+            combined.append(list1[i])
+            i += 1
+        else:
+            combined.append(list2[j])
+            j += 1
+              
+    # if there are any remaining elements in list1, add them to combined
+    while i < len(list1):
+        combined.append(list1[i])
+        i += 1
+ 
+    # if there are any remaining elements in list2, add them to combined
+    while j < len(list2):
+        combined.append(list2[j])
+        j += 1
+ 
+    return combined  # return the merged and sorted list
+
+
+*** OUTPUT ***
+## WRITE MERGE FUNCTION HERE ##
+#                             #
+#                             #
+#                             #
+#                             #
+############################### 
+
+
+
+
+print(merge([1,2,7,8], [3,4,5,6]))
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    [1, 2, 3, 4, 5, 6, 7, 8]
+    
+ """

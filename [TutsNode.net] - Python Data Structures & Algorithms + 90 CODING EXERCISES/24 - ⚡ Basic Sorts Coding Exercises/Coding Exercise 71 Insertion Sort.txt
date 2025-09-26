@@ -1,0 +1,85 @@
+Instructions: 
+Insertion Sort
+Write the insertion_sort function
+
+*** Solution Explanation ***
+def insertion_sort(my_list):
+    for i in range(1, len(my_list)):
+        temp = my_list[i]
+        j = i-1
+        while temp < my_list[j] and j > -1:
+            my_list[j+1] = my_list[j] 
+            my_list[j] = temp
+            j -= 1
+    return my_list
+
+
+Insertion Sort works by sorting elements one at a time and inserting them into their correct positions in the already sorted part of the list.
+
+Here is how the code works:
+
+The function takes an input list as an argument.
+
+The outer loop of the code runs from 1 to len(my_list)-1 using the range function. This outer loop will iterate over each element of the list starting from the second element.
+
+The variable temp is used to store the current element being sorted.
+
+The variable j is used to iterate over the already sorted part of the list, starting from the index before the current element i.
+
+The while loop checks if the current element is less than the previous element and the previous element is greater than or equal to zero (i.e., the index is still in the bounds of the list). If both conditions are true, it swaps the current element with the previous element and decrements j by 1.
+
+Once the while loop completes, the current element has been inserted into its correct position in the already sorted part of the list.
+
+The outer loop continues this process until all elements have been sorted and inserted into their correct positions.
+
+After the outer and inner loops have run, the sorted list is returned.
+
+Overall, this code sorts a list in ascending order by sorting elements one at a time and inserting them into their correct positions in the already sorted part of the list. The time complexity of this algorithm is O(n^2), but it can be more efficient than Bubble Sort and Selection Sort for small or partially sorted input data.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def insertion_sort(my_list):
+    # iterate over each element of the list starting from the second element
+    for i in range(1, len(my_list)):
+        # store the current element being sorted in a temporary variable
+        temp = my_list[i]
+        # iterate over the already sorted part of the list
+        j = i-1
+        # while the current element is less than the previous element and the index is still in bounds
+        while temp < my_list[j] and j > -1:
+            # swap the current element with the previous element
+            my_list[j+1] = my_list[j] 
+            my_list[j] = temp
+            # decrement the index j
+            j -= 1
+    # return the sorted list
+    return my_list
+
+
+*** OUTPUT ***
+## WRITE INSERTION_SORT FUNCTION HERE ##
+#                                      #
+#                                      #
+#                                      #
+#                                      #
+######################################## 
+
+
+
+
+print(insertion_sort([4,2,6,5,1,3]))
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    [1, 2, 3, 4, 5, 6]
+    
+ """

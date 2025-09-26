@@ -1,0 +1,98 @@
+Instructions: 
+Graph: Add Edge
+Write a method called add_edge to the Graph class that adds a new edge between two vertices in the graph's adjacency list.
+
+The method should take two parameters v1 and v2, which are the vertices that the edge should be added between. The method should first check that both vertices are present in the adj_list dictionary, and if they are, it should add both vertices to each other's adjacency list as new edges.
+
+Specifically, the method should append v2 to the list of adjacent vertices for v1, and v1 to the list of adjacent vertices for v2. The method should then return True to indicate that the edge was successfully added to the graph.
+
+If either v1 or v2 is not in the adj_list dictionary, the method should not add the edge and should return False to indicate that the edge was not added to the graph.
+
+*** Solution Explanation ***
+ def add_edge(self, v1, v2):
+        if v1 in self.adj_list and v2 in self.adj_list:
+            self.adj_list[v1].append(v2)
+            self.adj_list[v2].append(v1)
+            return True
+        return False
+
+
+The purpose of this method is to add a new edge between two vertices in the graph's adjacency list. The method takes two parameters v1 and v2, which are the vertices that the edge should be added between.
+
+The method first checks if both v1 and v2 are present in the adj_list dictionary by checking if they are keys in the dictionary using the in keyword.
+
+If both vertices are present in the dictionary, the method appends v2 to the list of adjacent vertices for v1 using the append() method on the adj_list[v1] list. It then appends v1 to the list of adjacent vertices for v2 using the append() method on the adj_list[v2] list. This updates the adjacency list of both vertices to include the new edge.
+
+The method then returns True to indicate that the edge was successfully added to the graph. If either v1 or v2 is not in the adj_list dictionary, the method does not add the edge and returns False to indicate that the edge was not added to the graph.
+
+Overall, this method ensures that the graph is only updated with valid edges between existing vertices, and it returns a boolean value to indicate whether the edge was successfully added or not.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def add_edge(self, v1, v2):
+    # Check that both v1 and v2 are already in the graph
+    if v1 in self.adj_list and v2 in self.adj_list:
+        # Add v2 to the adjacency list for v1 and vice versa
+        self.adj_list[v1].append(v2)
+        self.adj_list[v2].append(v1)
+        # Return True to indicate that the edge was successfully added to the graph
+        return True
+    # If either v1 or v2 is not in the graph, do not add the edge
+    # Return False to indicate that the edge was not added to the graph
+    return False
+
+
+
+*** OUTPUT ***
+class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def print_graph(self):
+        v_list = []
+        for vertex in self.adj_list:
+            v_list.append(vertex)
+        v_list.sort()
+        for v in v_list:
+            print(v, ':', self.adj_list[v])
+
+    def add_vertex(self, vertex):
+        if vertex not in self.adj_list.keys():
+            self.adj_list[vertex] = []
+            return True
+        return False
+
+    ## WRITE ADD_EDGE METHOD HERE ##
+    #                              #
+    #                              #
+    #                              #
+    #                              #
+    ################################
+
+
+
+
+my_graph = Graph()
+
+my_graph.add_vertex(1)
+my_graph.add_vertex(2)
+
+my_graph.add_edge(1,2)
+
+my_graph.print_graph()
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    1 : [2]
+    2 : [1]
+
+"""

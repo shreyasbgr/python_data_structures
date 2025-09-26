@@ -1,0 +1,39 @@
+Instructions:
+Write a method to find and return the middle node in the Linked List WITHOUT using the length attribute.
+
+*** Solution Explanation ***
+def find_middle_node(self):
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+
+
+
+This method uses two pointers, slow and fast, and advances them at different speeds through the list. The slow pointer moves one step at a time, while the fast pointer moves two steps at a time. By the time the fast pointer reaches the end of the list, the slow pointer will be at the middle node.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def find_middle_node(self):
+    # Initialize two pointers to the head of the list
+    slow = self.head
+    fast = self.head
+    
+    # Traverse the list with the fast pointer moving twice
+    # as fast as the slow pointer
+    while fast is not None and fast.next is not None:
+        slow = slow.next  # Move slow pointer one step
+        fast = fast.next.next  # Move fast pointer two steps
+        
+    # When the fast pointer reaches the end, the slow
+    # pointer will be at the middle node
+    return slow

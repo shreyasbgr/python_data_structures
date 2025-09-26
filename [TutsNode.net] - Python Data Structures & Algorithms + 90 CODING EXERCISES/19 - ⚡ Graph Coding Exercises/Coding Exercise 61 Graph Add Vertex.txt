@@ -1,0 +1,77 @@
+Instructions: 
+Graph: Add Vertex
+Write a method called add_vertex in the Graph class that adds a new vertex to the graph's adjacency list.
+
+The method should take a vertex parameter and check if the vertex already exists in the adj_list. If it doesn't, the function should add the vertex to the adj_list as a key with an empty list as its value and return True.
+
+If the vertex already exists in the adj_list, the function should not add a new vertex and return False.
+
+*** Solution Explanation ***
+def add_vertex(self, vertex):
+        if vertex not in self.adj_list:
+            self.adj_list[vertex] = []
+            return True
+        return False
+
+
+The method takes a parameter vertex, which is the new vertex to be added to the graph.
+
+The method first checks if the vertex parameter is not already in the adj_list dictionary. If it is not in the dictionary, the method adds the vertex as a new key in the adj_list with an empty list as its value by setting self.adj_list[vertex] = []. The method then returns True to indicate that the vertex was successfully added to the graph.
+
+If the vertex parameter already exists in the adj_list dictionary, the method does not add a new vertex and returns False to indicate that the vertex was not added to the graph.
+
+Overall, this method ensures that the graph is not created with duplicate vertices and returns a boolean value to indicate whether the vertex was successfully added or not.
+
+
+
+Code with inline comments:
+
+
+
+def add_vertex(self, vertex):
+    # Check if the vertex is not already in the graph
+    if vertex not in self.adj_list:
+        # If the vertex is not already in the graph, add it as a new key in the adj_list
+        # with an empty list as its value
+        self.adj_list[vertex] = []
+        # Return True to indicate that the vertex was successfully added to the graph
+        return True
+    # If the vertex is already in the graph, do not add it again
+    # Return False to indicate that the vertex was not added to the graph
+    return False
+
+
+
+*** OUTPUT ***
+class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def print_graph(self):
+        for vertex in self.adj_list:
+            print(vertex, ':', self.adj_list[vertex])
+
+    ## WRITE ADD_VERTEX METHOD HERE ##
+    #                                #
+    #                                #
+    #                                #
+    #                                #
+    ##################################
+
+
+
+
+my_graph = Graph()
+
+my_graph.add_vertex('A')
+
+my_graph.print_graph()
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    A : []
+
+"""

@@ -1,0 +1,11 @@
+Instructions:
+DLL: Set
+Write the set_value method
+
+*** Solution Explanation ***
+def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False

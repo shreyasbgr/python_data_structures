@@ -1,0 +1,27 @@
+Instructions: Write the get method
+
+
+*** Solution Explanation ***
+def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+
+Big O:
+
+O( n )
+
+n is the number of nodes in the linked list
+
+When we say that the time complexity of a linked list operation is O(n), we mean that the execution time of the operation grows linearly with the size of the linked list. In other words, as the number of elements in the linked list increases, the time taken to perform the operation increases at the same rate.
+
+An algorithm with a single loop that iterates through all n items in the worst case has a time complexity of O(n)
+
+This is what lets us know this is O(n):
+
+for _ in range(index):
+    temp = temp.next

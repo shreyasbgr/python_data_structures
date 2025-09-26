@@ -1,0 +1,95 @@
+Instructions: 
+Quick Sort
+Write the quick_sort function
+
+*** Solution Explanation ***
+def quick_sort_helper(my_list, left, right):
+    if left < right:
+        pivot_index = pivot(my_list, left, right)
+        quick_sort_helper(my_list, left, pivot_index-1)  
+        quick_sort_helper(my_list, pivot_index+1, right)       
+    return my_list
+
+
+The function quick_sort_helper takes three arguments: my_list, which is the list to be sorted, left, which is the leftmost index of the sublist to be sorted, and right, which is the rightmost index of the sublist to be sorted.
+
+The first line of the function checks if left is less than right. If it is not, that means there is only one element or no element in the sublist to be sorted, and the function simply returns the list.
+
+If there are two or more elements in the sublist, the function selects a pivot element by calling the function pivot with the arguments my_list, left, and right. The pivot function chooses a pivot element and partitions the list into two sublists: one sublist contains all elements less than the pivot, and the other contains all elements greater than or equal to the pivot.
+
+The function then recursively calls itself twice with the updated left and right indices to sort the two sublists. Specifically, the function calls itself with left and pivot_index-1 to sort the left sublist, and with pivot_index+1 and right to sort the right sublist.
+
+Finally, when the recursive calls have finished and all sublists are sorted, the function returns the sorted list.
+
+It's worth noting that the implementation assumes that the pivot function is already defined.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def quick_sort_helper(my_list, left, right):
+    # check if there is more than one element in the sublist to be sorted
+    if left < right:
+        # choose a pivot element and partition the list into two sublists
+        pivot_index = pivot(my_list, left, right)
+        
+        # recursively sort the left sublist (elements less than pivot)
+        quick_sort_helper(my_list, left, pivot_index-1)
+        
+        # recursively sort the right sublist (elements greater than or equal to pivot)
+        quick_sort_helper(my_list, pivot_index+1, right)
+    
+    # when there is only one element or no elements left to be sorted, return the sorted list
+    return my_list
+
+
+*** OUTPUT ***
+def swap(my_list, index1, index2):
+    temp = my_list[index1]
+    my_list[index1] = my_list[index2]
+    my_list[index2] = temp
+
+
+def pivot(my_list, pivot_index, end_index):
+    swap_index = pivot_index
+
+    for i in range(pivot_index+1, end_index+1):
+        if my_list[i] < my_list[pivot_index]:
+            swap_index += 1
+            swap(my_list, swap_index, i)
+    swap(my_list, pivot_index, swap_index)
+    return swap_index
+
+
+## WRITE QUICK_SORT_HELPER FUNCTION HERE ##
+#                                         #
+#                                         #
+#                                         #
+#                                         #
+###########################################
+    
+
+def quick_sort(my_list):
+    quick_sort_helper(my_list, 0, len(my_list)-1)
+
+
+
+
+my_list = [4,6,1,7,3,2,5]
+
+quick_sort(my_list)
+
+print(my_list)
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    [1, 2, 3, 4, 5, 6, 7]
+    
+ """

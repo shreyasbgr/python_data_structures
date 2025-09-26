@@ -1,0 +1,31 @@
+Instructions:
+DLL: Reverse (⚡Interview Question)
+Create a new method called reverse that reverses the order of the nodes in the list, i.e., the first node becomes the last node, the second node becomes the second-to-last node, and so on.
+
+To do this, you'll need to traverse the list and change the direction of the pointers between the nodes so that they point in the opposite direction. Once you've done this for all nodes, you'll also need to update the head and tail pointers to reflect the new order of the nodes.
+
+*** Solution Explanation ***
+ def reverse(self):
+        temp = self.head
+        while temp is not None:
+            # swap the prev and next pointers of node points to
+            temp.prev, temp.next = temp.next, temp.prev
+            
+            # move to the next node
+            temp = temp.prev
+            
+        # swap the head and tail pointers
+        self.head, self.tail = self.tail, self.head
+
+
+This code is for reversing a doubly linked list by swapping the prev and next pointers of each node.
+
+The method starts by creating a variable temp and setting it to the head of the list. We use this variable to traverse the list and perform the swap operation on each node.
+
+Inside the while loop, we swap the prev and next pointers of the current node by using Python's tuple packing and unpacking syntax. We assign the value of temp.next to temp.prev and the value of temp.prev to temp.next, effectively swapping the two pointers.
+
+We then update the value of temp to be the previous node (which is now the next node in the original list). We do this by setting temp to temp.prev.
+
+We repeat this process until we have traversed the entire list (i.e., temp is None), at which point we have effectively reversed the list.
+
+Finally, we swap the head and tail pointers of the list by using tuple packing and unpacking. We assign the value of self.tail to self.head and the value of self.head to self.tail, effectively reversing the order of the pointers at the beginning and end of the list.

@@ -1,0 +1,117 @@
+Instructions: 
+HT: Subarray Sum (⚡Interview Question)
+Given an array of integers nums and a target integer target, write a Python function called subarray_sum that finds the indices of a contiguous subarray in nums that add up to the target sum using a hash table (dictionary).
+
+Your function should take two arguments:
+
+nums: a list of integers representing the input array
+
+target: an integer representing the target sum
+
+
+Your function should return a list of two integers representing the starting and ending indices of the subarray that adds up to the target sum. If there is no such subarray, your function should return an empty list.
+
+For example:
+
+
+
+nums = [1, 2, 3, 4, 5]
+target = 9
+print(subarray_sum(nums, target))  # should print [1, 3]
+
+
+Note that there may be multiple subarrays that add up to the target sum, but your function only needs to return the indices of any one such subarray. Also, the input list may contain both positive and negative integers.
+
+*** Solution Explanation ***
+def subarray_sum(nums, target):
+    sum_index = {0: -1}
+    current_sum = 0
+    for i, num in enumerate(nums):
+        current_sum += num
+        if current_sum - target in sum_index:
+            return [sum_index[current_sum - target] + 1, i]
+        sum_index[current_sum] = i
+    return []
+
+
+
+
+The subarray_sum function takes an input list of integers nums and a target sum target. It finds the indices of a contiguous subarray in nums that add up to the target sum.
+
+The function works by keeping a running sum of the elements of the input list using the current_sum variable, and storing this sum as a key in a hash table called sum_index. The corresponding value of each key is the index of the last element that adds to the sum.
+
+At each iteration, the function checks if the difference between the current sum and the target sum has been seen before in the sum_index hash table. If so, the function returns the indices of the subarray that adds up to the target sum.
+
+If the difference between the current sum and the target sum has not been seen before, the function adds the current sum and its index to the sum_index hash table, and continues to the next element in the input list.
+
+If no subarray is found, the function returns an empty list.
+
+Overall, the function has a time complexity of O(n) because it loops through the input list exactly once. The space complexity of the function is also O(n), since the sum_index hash table can potentially store all n elements of the input list.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def subarray_sum(nums, target):
+    # create an empty hash table and set the initial sum and index
+    sum_index = {0: -1}
+    current_sum = 0
+ 
+    # loop through each number in the input array
+    for i, num in enumerate(nums):
+        # add the number to the current sum
+        current_sum += num
+ 
+        # check if the difference between the current sum and the target sum has been seen before
+        if current_sum - target in sum_index:
+            # return the indices of the subarray that adds up to the target sum
+            return [sum_index[current_sum - target] + 1, i]
+ 
+        # add the current sum and its index to the hash table
+        sum_index[current_sum] = i
+ 
+    # if no subarray is found, return an empty list
+    return []
+
+*** OUTPUT ***
+# WRITE SUBARRAY_SUM FUNCTION HERE #
+#                                  #
+#                                  #
+#                                  #
+#                                  #
+####################################
+
+
+
+
+nums = [1, 2, 3, 4, 5]
+target = 9
+print ( subarray_sum(nums, target) )
+
+nums = [-1, 2, 3, -4, 5]
+target = 0
+print ( subarray_sum(nums, target) )
+
+nums = [2, 3, 4, 5, 6]
+target = 3
+print ( subarray_sum(nums, target) )
+
+nums = []
+target = 0
+print ( subarray_sum(nums, target) )
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    [1, 3]
+    [0, 3]
+    [1, 1]
+    []
+
+"""

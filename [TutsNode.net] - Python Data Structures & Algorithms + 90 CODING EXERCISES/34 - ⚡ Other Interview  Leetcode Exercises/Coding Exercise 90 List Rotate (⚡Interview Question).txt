@@ -1,0 +1,94 @@
+Instructions: 
+List: Rotate (⚡Interview Question)
+You are given a list of n integers and a non-negative integer k.
+
+Your task is to write a function called rotate that takes the list of integers and an integer k as input and rotates the list to the right by k steps.
+
+The function should modify the input list in-place, and you should not return anything.
+
+Constraints:
+
+Each element of the input list is an integer.
+
+The integer k is non-negative.
+
+
+
+Function signature: def rotate(nums, k):
+
+Example:
+
+Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+Function call: rotate(nums, k)
+Output: nums = [5, 6, 7, 1, 2, 3, 4]
+
+
+Explanation: The list has been rotated to the right by 3 steps:
+
+
+
+[7, 1, 2, 3, 4, 5, 6]
+
+[6, 7, 1, 2, 3, 4, 5]
+
+[5, 6, 7, 1, 2, 3, 4]
+
+*** Solution Explanation ***
+def rotate(nums, k):
+    k = k % len(nums)
+    nums[:] = nums[-k:] + nums[:-k]
+
+
+
+
+This code defines a function rotate that takes a list of integers nums and a non-negative integer k as input and rotates the list to the right by k steps. The function modifies the input list in-place.
+
+Here's a step-by-step explanation of the code:
+
+
+
+k = k % len(nums): This line takes the modulus of k with the length of the array. This is done to handle cases where k is greater than or equal to the length of the array. By doing this, we ensure that we only rotate the list by the necessary number of steps, effectively reducing unnecessary rotations.
+
+nums[:] = nums[-k:] + nums[:-k]: This line rotates the list in-place by slicing it into two parts and concatenating them in reverse order. The expression nums[-k:] represents the last k elements of the list (the part that will be moved to the beginning of the rotated list), and the expression nums[:-k] represents the first n - k elements of the list (the part that will be moved to the end of the rotated list). By concatenating these two slices, we create a new list that represents the rotated version of the input list. The assignment nums[:] = modifies the input list in-place with the rotated list.
+
+
+
+The function works by first calculating the effective number of steps to rotate the list (using the modulus operation) and then creating a new list with the elements rearranged in the rotated order. Finally, the function updates the input list in-place with the rotated list.
+
+
+
+
+
+Code with inline comments:
+
+
+
+def rotate(nums, k):
+    # Calculate the effective number of steps to rotate
+    k = k % len(nums)
+    # Rearrange the elements in the rotated order
+    nums[:] = nums[-k:] + nums[:-k]
+
+
+*** OUTPUT ***
+# WRITE ROTATE FUNCTION HERE #
+#                            #
+#                            #
+#                            #
+#                            #
+##############################
+    
+
+
+nums = [1, 2, 3, 4, 5, 6, 7]
+k = 3
+rotate(nums, k)
+print("Rotated array:", nums)
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    Rotated array: [5, 6, 7, 1, 2, 3, 4]
+
+"""

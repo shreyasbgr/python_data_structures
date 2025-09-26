@@ -1,0 +1,95 @@
+Instructions: Finish the append method by writing the if/else statement
+
+
+*** Solution Explanation ***
+def append(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self.length += 1
+
+
+
+Big O:
+
+O( 1 )
+
+Constant Time
+
+No matter how large the linked list is, the number of operations taken to execute append remains constant
+
+Constant time is another name for O( 1 )
+
+________________________________________
+
+
+Detailed Code Explanation:
+Create a new node with the given value:
+
+    new_node = Node(value)
+
+
+
+Check if the linked list is empty:
+
+    if self.head is None:
+
+You could also do it this way:
+
+    if self.lenghth == 0:
+
+
+
+If the LL is empty, set the head and tail to point at new_node:
+
+    self.head = new_node
+
+    self.tail = new_node
+
+   
+
+If the head is not None (which means the LL has at least one node), update the next attribute of the node tail is pointing to, to point to new_node:
+
+    self.tail.next = new_node
+
+
+
+Set tail to point to new_node:
+
+    self.tail = new_node
+
+   
+
+Increment the length of the linked list by 1:
+
+    self.length += 1
+
+
+
+
+
+Code with inline comments:
+
+
+
+def append(self, value):
+    # Create a new node with the given value
+    new_node = Node(value)
+ 
+    # Check to see if the linked list is empty
+    if self.head is None:
+        # Point both head and tail at the new node
+        self.head = new_node
+        self.tail = new_node
+    else:
+        # Point the next pointer of the last node at the new node
+        self.tail.next = new_node
+        # Point tail at the new node
+        self.tail = new_node
+ 
+    # Increment the length of the linked list
+    self.length += 1

@@ -1,0 +1,108 @@
+Instructions:
+HT: Get
+Write the get_item method.
+
+The get_item method of a HashTable class takes a key as input and returns the value associated with that key in the hash table.
+
+If the key is not found in the hash table, it returns None.
+
+The method should work by first calculating the hash value for the input key using the __hash method, then looking up that hash value in the data_map attribute of the class.
+
+If the hash value is not None, the method should iterate over the list of key-value pairs stored in the hash table at that hash value, and return the value associated with the input key if it is found.
+
+If the key is not found in the list of key-value pairs, the method should return None.
+
+*** Solution Explanation ***
+def get_item(self, key):
+        index = self.__hash(key)
+        if self.data_map[index] is not None:
+            for i in range(len(self.data_map[index])):
+                if self.data_map[index][i][0] == key:
+                    return self.data_map[index][i][1]
+        return None
+The get_item method takes a key as input and returns the value associated with that key in the hash table.
+
+First, the method calculates the hash value of the input key using the __hash method and stores it in the index variable.
+
+If the hash value in the data_map attribute at the given index is not None, the method checks if the key exists in the list of key-value pairs stored at that hash value in the data_map.
+
+To do this, the method iterates over the list of key-value pairs stored at that hash value by using a for loop that iterates over the range of the length of the list.
+
+Then, the method checks if the key matches the first element of the key-value pair at the current index of the list.
+
+If there is a match, the method returns the value associated with that key in the key-value pair.
+
+If no match is found in the list, the method returns None.
+
+
+
+Code with inline comments:
+
+
+
+def get_item(self, key):
+    # get the index of the key in the hash table
+    index = self.__hash(key)
+    
+    # check if there is any value stored in the index of the hash table
+    if self.data_map[index] is not None:
+        # iterate over the list of key-value pairs at the index
+        for i in range(len(self.data_map[index])):
+            # check if the key in the pair is the same as the one passed to the method
+            if self.data_map[index][i][0] == key:
+                # if so, return the value associated with the key
+                return self.data_map[index][i][1]
+    # if the key is not found in the hash table, return None
+    return None
+
+
+*** Code ***
+class HashTable:
+    def __init__(self, size = 7):
+        self.data_map = [None] * size
+      
+    def __hash(self, key):
+        my_hash = 0
+        for letter in key:
+            my_hash = (my_hash + ord(letter) * 23) % len(self.data_map)
+        return my_hash  
+
+    def print_table(self):
+        for i, val in enumerate(self.data_map): 
+            print(i, ": ", val)
+    
+    def set_item(self, key, value):
+        index = self.__hash(key)
+        if self.data_map[index] == None:
+            self.data_map[index] = []
+        self.data_map[index].append([key, value])
+    
+    ## WRITE GET_ITEM METHOD HERE ##
+    #                              #
+    #                              #
+    #                              #
+    #                              #
+    ################################
+
+
+
+
+my_hash_table = HashTable()
+
+my_hash_table.set_item('bolts', 1400)
+my_hash_table.set_item('washers', 50)
+
+print('Bolts:', my_hash_table.get_item('bolts'))
+print('Washers:', my_hash_table.get_item('washers'))
+print('Lumber:', my_hash_table.get_item('lumber'))
+
+
+
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    Bolts: 1400
+    Washers: 50
+    Lumber: None
+
+"""
